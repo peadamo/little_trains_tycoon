@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqggth1mptj4n"]
+
+[ext_resource type="Script" path="res://logic_points/rail_point.gd" id="1_qkefs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_thx14"]
+radius = 15.1327
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imdfs"]
+albedo_color = Color(0.788235, 0.0980392, 0.231373, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4h82a"]
+material = SubResource("StandardMaterial3D_imdfs")
+
+[node name="RailPoint" type="Node2D"]
+script = ExtResource("1_qkefs")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_thx14")
+
+[node name="white" type="MeshInstance2D" parent="."]
+visible = false
+scale = Vector2(24.8694, 24.8694)
+mesh = SubResource("SphereMesh_4h82a")
+
+[node name="red" type="MeshInstance2D" parent="."]
+modulate = Color(0.537255, 0, 0.137255, 1)
+scale = Vector2(23.5003, 23.5003)
+mesh = SubResource("SphereMesh_4h82a")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

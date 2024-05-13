@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxn2sqad5ar8m"]
+
+[ext_resource type="Script" path="res://logic_points/rail.gd" id="1_0anvt"]
+[ext_resource type="Texture2D" uid="uid://dvc253y48uxtm" path="res://logic_points/railway.png" id="2_ok1gj"]
+
+[sub_resource type="Curve2D" id="Curve2D_tilwc"]
+bake_interval = 10.0
+
+[node name="rail" type="Path2D"]
+curve = SubResource("Curve2D_tilwc")
+script = ExtResource("1_0anvt")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 15.0
+texture = ExtResource("2_ok1gj")
+texture_mode = 1

@@ -1,0 +1,11 @@
+Model Information:
+* title:	train
+* source:	https://sketchfab.com/3d-models/train-a0166b85033643acb984ce6f491545cf
+* author:	Rajni (https://sketchfab.com/cgRajni)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "train" (https://sketchfab.com/3d-models/train-a0166b85033643acb984ce6f491545cf) by Rajni (https://sketchfab.com/cgRajni) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
