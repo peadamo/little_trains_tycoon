@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://hpuql8iuruag"]
+
+[ext_resource type="Texture2D" uid="uid://okx75kteb5pn" path="res://tilemap_version/cities/tile_0046.png" id="1_ad2wn"]
+[ext_resource type="Script" path="res://tilemap_version/cities/city_01.gd" id="1_kjt0j"]
+[ext_resource type="PackedScene" uid="uid://bl5snwtgipl16" path="res://tilemap_version/GUI/h_box_container.tscn" id="3_qaccq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_th68k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eyn7v"]
+
+[node name="City01" type="Node2D"]
+z_index = 1
+script = ExtResource("1_kjt0j")
+
+[node name="resalt_circle" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.917647)
+rotation = 3.14159
+scale = Vector2(27.1886, 28.1275)
+mesh = SubResource("SphereMesh_th68k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ad2wn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_eyn7v")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -8.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="HBoxContainer" parent="Control/VBoxContainer" instance=ExtResource("3_qaccq")]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

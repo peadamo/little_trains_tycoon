@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ii57bp8iw2r"]
+
+[ext_resource type="Texture2D" uid="uid://dd2cquushn3m0" path="res://tilemap_version/Vegtables.png" id="1_c4l2p"]
+
+[node name="Item" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c4l2p")
+hframes = 3
+vframes = 3
