@@ -41,6 +41,7 @@ func _on_timer_timeout():
 						
 						var selected_car = null
 						var distance = 999999999
+						
 						for car in vehicles.get_children():
 							if car.state == WAITING:
 								var car_dist = car.global_position.distance_to(city_B.global_position)
@@ -51,14 +52,13 @@ func _on_timer_timeout():
 						if selected_car != null:
 							selected_car.navigation_agent_2d.set_target_position(city_B.global_position)
 							if selected_car.navigation_agent_2d.is_target_reachable():
-								print("car")
 								
 								selected_car.origin = city_B
 								selected_car.destination = city_A
 								selected_car.state = PICKING
 								selected_car.cargo = needed_item
 								selected_car.actual_city.remove_in_city_car_marker()
-								selected_car.actual_city.car_count-=1
+								print(selected_car," - ori:",city_B," - dest:",city_A," - state",selected_car.state)
 						
 				
 @onready var temp_build_holder = $temp_build_holder
@@ -68,7 +68,6 @@ func add_car(hover_city):
 	car.reparent(vehicles)
 	car.global_position = hover_city.global_position
 	hover_city.add_in_city_car_marker()
-	hover_city.car_count+=1
 	car.state = WAITING
 	car.actual_city = hover_city
 	car.visible = false

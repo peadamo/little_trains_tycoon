@@ -19,11 +19,8 @@ var storage : Array = []
 
 
 func remove_from_needed(item):
-	print("remove item",item)
 	var index = item_need.find(item)
-	print(index)
 	item_need.remove_at(index)
-	print(item_need)
 
 
 var hover = false
@@ -36,41 +33,42 @@ func _on_area_2d_mouse_entered():
 @onready var v_box_container = $Control/VBoxContainer
 
 func _on_area_2d_mouse_exited():
-	
 	$resalt_circle.visible = false
 	hover = false
 	
-const IN_CITY_CAR_MARKER = preload("res://tilemap_version/GUI/IN_CITY_CAR_MARKER.tscn")	
-const H_BOX_CONTAINER = preload("res://tilemap_version/GUI/h_box_container.tscn")
+@onready var car_counter = $Control/VBoxContainer/car_display/car_counter
+
 func add_in_city_car_marker():
-	
-	var h_containers = v_box_container.get_children()
-	var h_located = false
-	for h_container in h_containers:
-		if h_container.get_child_count() < 5:
-			h_container.add_child(IN_CITY_CAR_MARKER.instantiate())
-			h_located = true
-			print("car located",h_container)
-			break
-	if !h_located :
-		v_box_container.add_child(H_BOX_CONTAINER.instantiate())
-		v_box_container.get_child(-1).add_child(IN_CITY_CAR_MARKER.instantiate())
+	car_count+=1
+	car_counter.text = str(" x ",car_count)
 		
 		
 func remove_in_city_car_marker():
-	
-	var last_H_cont = v_box_container.get_child(-1)
-	last_H_cont.get_child(-1).queue_free()
-	if last_H_cont.get_child_count() == 0 :
-		last_H_cont.queue_free()
-	
+	car_count-=1
+	car_counter.text = str(" x ",car_count)
 
+	
+var carrot_counter = 0
+@onready var carrot_counter_label = $Control/VBoxContainer/carrot_display/carrot_counter_label
+
+func update_storage():
+	carrot_counter=0
+	for item in storage:
+		match item :
+			"carrot":
+				carrot_counter+=1
+	carrot_counter_label.text = str(" x ",carrot_counter)
+	
 
 func _on_timer_timeout():
-	print("city timer")
 	if type == build_type.FARM:
 		storage.append("carrot")
-		storage.append("carrot")
 	if type == build_type.CITY:
-		item_need.append("carrot")
+		if item_need.size()<5:
+			item_need.append("carrot")
+	update_storage()
+		
+func remove_carrot():
+	storage.remove_at(0)
+	update_storage()
 

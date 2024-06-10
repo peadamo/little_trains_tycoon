@@ -41,8 +41,12 @@ func _process(delta):
 					velocity = direction*delta*speed
 					
 				else :
+					origin.remove_carrot()
 					state = CARRING
 					navigation_agent_2d.set_target_position(destination.global_position)
+					$carring_ojet.visible=true
+					
+					
 					
 			if state == CARRING:
 				var distance = global_position.distance_to(destination.global_position)
@@ -64,9 +68,9 @@ func _process(delta):
 					velocity = direction*delta*speed
 					
 				else :
+					$carring_ojet.visible=false
 					state = WAITING
 					destination.remove_from_needed(cargo)
-					destination.car_count+=1
 					destination.add_in_city_car_marker()
 			move_and_slide()
 	else:
